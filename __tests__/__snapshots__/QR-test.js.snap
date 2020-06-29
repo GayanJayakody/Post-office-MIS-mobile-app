@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    allowCaptureRetake={false}
+    colorForScannerFrame="black"
+    frameColor="yellow"
+    laserColor="blue"
+    onReadCode={[Function]}
+    scanBarcode={true}
+    showFrame={false}
+    style={
+      Object {
+        "backgroundColor": "black",
+        "flex": 1,
+      }
+    }
+  >
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "paddingBottom": 0,
+          "paddingTop": 8,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+            "paddingHorizontal": 15,
+          }
+        }
+      >
+        <Image
+          resizeMode="contain"
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        />
+      </View>
+    </RCTSafeAreaView>
+    <View
+      style={
+        Object {
+          "flex": 10,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <CKCamera
+        cameraOptions={
+          Object {
+            "flashMode": "auto",
+            "focusMode": "on",
+            "ratioOverlayColor": undefined,
+            "zoomMode": "on",
+          }
+        }
+        frameColor="yellow"
+        laserColor="blue"
+        onReadCode={[Function]}
+        scanBarcode={true}
+        scannerOptions={
+          Object {
+            "colorForFrame": 4278190080,
+            "frameHeight": 200,
+            "offsetFrame": 30,
+          }
+        }
+        showFrame={false}
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "flex-end",
+          }
+        }
+      />
+    </View>
+    <RCTSafeAreaView
+      emulateUnlessSupported={true}
+      style={
+        Array [
+          Object {
+            "flex": 2,
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "padding": 14,
+          },
+          Object {
+            "backgroundColor": "#ffffff00",
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-start",
+            "opacity": 1,
+            "padding": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 20,
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+            "padding": 10,
+          }
+        }
+      />
+    </RCTSafeAreaView>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "powderblue",
+        "borderBottomLeftRadius": 20,
+        "borderBottomRightRadius": 20,
+        "borderTopLeftRadius": 20,
+        "borderTopRightRadius": 20,
+        "height": 300,
+        "textAlign": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "royalblue",
+          "fontSize": 25,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Letter/Parcel Details
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "royalblue",
+          "fontSize": 20,
+          "fontWeight": "900",
+          "padding": 10,
+        }
+      }
+    >
+      Scan the letter or parcel
+    </Text>
+  </View>
+</View>
+`;
