@@ -81,7 +81,7 @@ const QRStyles = StyleSheet.create({
 	  backgroundColor: 'goldenrod',
 	  borderRadius:10,
 	  width: 200,
-	  height:40 	
+	  height:40,
   },
   buttonTitle:{
 	  color: "white",
