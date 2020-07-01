@@ -9,9 +9,9 @@ app.use(bodyParser.json({type:'application/json'}));
 app.use(bodyParser.urlencoded({extended:true}));
 	
 var con = mysql.createConnection({
-	host:'http://db4free.net/',
-	user: 'sl_post',
-	password: 'sepgroup12',
+	host:'localhost',
+	user: 'root',
+	password: '',
 	database: 'post_office_mis'
 });
 	
