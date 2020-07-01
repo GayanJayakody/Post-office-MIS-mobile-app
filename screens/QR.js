@@ -1,17 +1,22 @@
 
+import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { Text, View, TouchableHighlight, PermissionsAndroid, Platform, StyleSheet} from 'react-native';
+import { Text, View, TouchableHighlight, PermissionsAndroid, Platform, ImageBackground, Image, Dimensions } from 'react-native';
 import { CameraKitCameraScreen, } from 'react-native-camera-kit';
+import {Button} from 'react-native-elements';
+import { QRStyles } from './styles'
+
 
 export default class Scan extends Component {
   constructor() {
     super();
     this.state = {
-      qrvalue: 'Scan the letter or parcel',
+      qrvalue: null,
       opneScanner: false,
 	  getqrvalues: false
     };
   }
+  
   onBarcodeScan(qrvalue) {
     //called after te successful scanning of QRCode/Barcode
     this.setState({ opneScanner: true });
@@ -54,7 +59,7 @@ export default class Scan extends Component {
           )
           if (granted === PermissionsAndroid.RESULTS.GRANTED) {
             //If CAMERA Permission is granted
-            that.setState({ qrvalue: 'Scan the letter or parcel' });
+            that.setState({ qrvalue: null});
             that.setState({ opneScanner: true });
           } else {
             alert("CAMERA permission denied");
@@ -67,82 +72,68 @@ export default class Scan extends Component {
       //Calling the camera permission function
       requestCameraPermission();
     }else{
-      that.setState({ qrvalue: 'Scan the letter or parcel' });
+      that.setState({ qrvalue: null });
       that.setState({ opneScanner: true });
     }    
   }
   
   render() {
     if (!this.state.opneScanner) {
-      return (
-        <View style={styles.container}>{this.onOpneScanner()}
-
-        </View>
-      );
-    }else{
-    return (
-      <View style={{flex:1}}>
-        <CameraKitCameraScreen
-          showFrame={false}
-          scanBarcode={true}
-          laserColor={'blue'}
-          frameColor={'yellow'}
-          colorForScannerFrame={'black'}
-          onReadCode={event =>
-            this.onBarcodeScan(event.nativeEvent.codeStringValue)
-          }
-        />
-		  <View style={{width: '100%', height: 300, backgroundColor: 'powderblue',
-    		borderTopLeftRadius: 20,
-    		borderTopRightRadius: 20,
-			borderBottomLeftRadius: 20,
-    		borderBottomRightRadius: 20,
-        	alignItems: 'center',
-			textAlign: 'center'}} >
-		  <Text style={styles.subheading}>Letter/Parcel Details</Text>
-		  <Text style={styles.simpleText}>{this.state.qrvalue ? this.state.qrvalue : ''}</Text>
-		  </View>
-      </View>
-    );
+      	return (
+			<ImageBackground source={require('../images/wallpaper.jpg')} style={{flex:1}}>
+        		<View style={QRStyles.container}>
+					{this.onOpneScanner()}
+        		</View>
+			</ImageBackground>
+      	);
+    }
+	else if (this.state.qrvalue === null){
+	    return (
+	      <View style={{flex:1}}>
+		 		<View style={{flex: 0.1}}>
+				<Image source={require('../images/background.jpg')} style={QRStyles.image}/>
+					<Text style={QRStyles.absoluteText}>Scan QR Code</Text>
+				</View>
+	        	<CameraKitCameraScreen
+	          		showFrame={false}
+	          		scanBarcode={true}
+	          		laserColor={'blue'}
+	          		frameColor={'yellow'}
+	          		colorForScannerFrame={'black'}
+	          		onReadCode={event => this.onBarcodeScan(event.nativeEvent.codeStringValue)}
+	        	/>
+	      </View>
+		
+	    );
+	}
+	else{
+	    return (
+	      <View style={{flex:1}}>
+		  	<View style={{flex:0.5}}>
+	        	<CameraKitCameraScreen
+	          		showFrame={false}
+	          		scanBarcode={true}
+	          		laserColor={'blue'}
+	          		frameColor={'yellow'}
+	          		colorForScannerFrame={'black'}
+	          		onReadCode={event => this.onBarcodeScan(event.nativeEvent.codeStringValue)}
+	        	/>
+			</View>
+			<View style={{flex:0.5}}>
+			<Image source={require('../images/background.jpg')} style={QRStyles.image}/>
+				<View style={QRStyles.subContainer}>
+			  	<Text style={QRStyles.simpleText}>{this.state.qrvalue ? this.state.qrvalue : ''}{'\n'}</Text>
+				<Button
+	          		title="Clear"
+					buttonStyle={QRStyles.button}
+					titleStyle={QRStyles.buttonTitle}
+	          		onPress={() => this.setState({ qrvalue: null})}
+	        	/>
+			  </View>
+			</View>
+	      </View>
+		
+	    );
 	}
   }
 }
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex:1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#2c3539',
-    padding: 10,
-    width:300,
-    marginTop:16
-  },
-  heading: { 
-    color: 'white', 
-    fontSize: 24, 
-    alignSelf: 'center', 
-    padding: 10, 
-    marginTop: 30 
-  },
-  simpleText: { 
-    color: 'royalblue',
-	fontWeight: '900',
-    fontSize: 20, 
-    alignSelf: 'center', 
-    padding: 10, 
-  },
-  subheading:{
-    color: 'royalblue',
-	fontWeight: 'bold',
-    fontSize: 25, 
-    alignSelf: 'center', 
-     	
-  }
-});
