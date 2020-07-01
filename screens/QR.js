@@ -11,7 +11,7 @@ export default class Scan extends Component {
   constructor() {
     super();
     this.state = {
-      qrvalue: null,
+      qrvalue: '',
       opneScanner: false,
 	  getqrvalues: false
     };
@@ -59,7 +59,7 @@ export default class Scan extends Component {
           )
           if (granted === PermissionsAndroid.RESULTS.GRANTED) {
             //If CAMERA Permission is granted
-            that.setState({ qrvalue: null});
+            that.setState({ qrvalue: ''});
             that.setState({ opneScanner: true });
           } else {
             alert("CAMERA permission denied");
@@ -72,7 +72,7 @@ export default class Scan extends Component {
       //Calling the camera permission function
       requestCameraPermission();
     }else{
-      that.setState({ qrvalue: null });
+      that.setState({ qrvalue: '' });
       that.setState({ opneScanner: true });
     }    
   }
@@ -87,29 +87,11 @@ export default class Scan extends Component {
 			</ImageBackground>
       	);
     }
-	else if (this.state.qrvalue === null){
-	    return (
-	      <View style={{flex:1}}>
-		 		<View style={{flex: 0.1}}>
-				<Image source={require('../images/background.jpg')} style={QRStyles.image}/>
-					<Text style={QRStyles.absoluteText}>Scan QR Code</Text>
-				</View>
-	        	<CameraKitCameraScreen
-	          		showFrame={false}
-	          		scanBarcode={true}
-	          		laserColor={'blue'}
-	          		frameColor={'yellow'}
-	          		colorForScannerFrame={'black'}
-	          		onReadCode={event => this.onBarcodeScan(event.nativeEvent.codeStringValue)}
-	        	/>
-	      </View>
-		
-	    );
-	}
 	else{
 	    return (
 	      <View style={{flex:1}}>
-		  	<View style={{flex:0.5}}>
+		  	<View style={{flex:0.6}}>
+			<Text style={QRStyles.simpleText}>Scan the QR code{'\n'}</Text>
 	        	<CameraKitCameraScreen
 	          		showFrame={false}
 	          		scanBarcode={true}
@@ -119,16 +101,11 @@ export default class Scan extends Component {
 	          		onReadCode={event => this.onBarcodeScan(event.nativeEvent.codeStringValue)}
 	        	/>
 			</View>
-			<View style={{flex:0.5}}>
+			<View style={{flex:0.4}}>
 			<Image source={require('../images/background.jpg')} style={QRStyles.image}/>
 				<View style={QRStyles.subContainer}>
 			  	<Text style={QRStyles.simpleText}>{this.state.qrvalue ? this.state.qrvalue : ''}{'\n'}</Text>
-				<Button
-	          		title="Clear"
-					buttonStyle={QRStyles.button}
-					titleStyle={QRStyles.buttonTitle}
-	          		onPress={() => this.setState({ qrvalue: null})}
-	        	/>
+
 			  </View>
 			</View>
 	      </View>
