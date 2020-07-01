@@ -1,10 +1,11 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { StyleSheet, Button, View, Image, Text, FlatList, AppRegistry, TextInput, ScrollView, TouchableHighlight,PermissionsAndroid, Platform} from 'react-native';
+import { View, Image, Text, AppRegistry, PermissionsAndroid, Platform, ImageBackground, Dimensions} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { CameraKitCameraScreen } from 'react-native-camera-kit';
-
+import {Button} from 'react-native-elements';
+import { MarkAsDeliveredStyles } from './styles'
 
 export default class Delivered extends Component{
 	constructor(props){
@@ -230,12 +231,16 @@ getData = (qrvalue) => {
 render(){
 	if (!this.state.opneScanner) {
 	    return (
-	        <View style={{flex:1, alignItems: 'center', justifyContent: 'center',}}>{this.onOpneScanner()}
-	        </View>
+			<ImageBackground source={require('../images/wallpaper.jpg')} style={{flex:1}}>
+        		<View style={MarkAsDeliveredStyles.container}>
+					{this.onOpneScanner()}
+        		</View>
+			</ImageBackground>
 	    );
 	}else{
 		return(
 			<View style={{flex:1}}>
+				<View style={{flex:0.5}}>
 				<CameraKitCameraScreen 
 	          		showFrame={false}
 	          		scanBarcode={true}
@@ -245,58 +250,33 @@ render(){
 	          		onReadCode={event =>
 	            		this.getData(event.nativeEvent.codeStringValue)
 	          		}
-				/>        			
-				<View style={{
-					width: '100%', height: 200, backgroundColor: 'lightblue',
-	    			borderTopLeftRadius: 20,
-	    			borderTopRightRadius: 20,
-					borderBottomLeftRadius: 20,
-	    			borderBottomRightRadius: 20,
-	        		justifyContent: 'center',
-	        		alignItems: 'center',
-					textAlign: 'center'
-	      		}}> 
-	     			<Text style={{fontSize: 25,color: 'royalblue'}}>Letter/Parcel ID</Text>
-					<Text style={{fontSize: 25,color: 'royalblue',}}>{this.state.dataId}</Text>	
-					<Text style={{fontSize:5}}>{'\n'}</Text>
-					<Button
-	          			title="            Delivered            "
-	          			onPress={this.deliveredButton}
-	        		/>
-					<Text style={{fontSize: 5}}>{'\n\n'}</Text>
-					<Button
-	          			title="        Receiver Unavailable        "
-	          			onPress={this.unavailableButton}
-	        		/>
-					<Text style={{fontSize:5}}>{'\n'}</Text>		
+				/> 
+				</View>
+				<View style={{flex:0.5}}>
+					<Image source={require('../images/background.jpg')} style={MarkAsDeliveredStyles.image}/>
+						<View style={MarkAsDeliveredStyles.subContainer}>
+	     					<Text style={MarkAsDeliveredStyles.simpleText}>Letter/Parcel ID{'\n'}{this.state.dataId}</Text>
+							<Button
+	          					title="Delivered"
+								buttonStyle={MarkAsDeliveredStyles.buttonDeliver}
+								titleStyle={MarkAsDeliveredStyles.buttonTitle}
+	          					onPress={this.deliveredButton}
+	        				/>
+							<Text style={{fontSize: 10}}>{'\n\n'}</Text>
+							<Button
+	          					title="Unavailable"
+								buttonStyle={MarkAsDeliveredStyles.buttonUnavailable}
+								titleStyle={MarkAsDeliveredStyles.buttonTitle}
+	          					onPress={this.unavailableButton}
+	        				/>
+			  			</View>		
 					</View>	
 				</View>
 			);
 		}
-}}
+	}
+}
 
-const textStyles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-  },
-  blue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 30,
-  },
-  red: {
-    color: 'azure',
-	fontWeight: 'bold',
-    fontSize: 30,
-	textAlign: 'center',
-  },
-  
-  black: {
-    color: 'azure',
-    fontSize: 20,
-	textAlign: 'center',
-  },
-});
 
 AppRegistry.registerComponent('Appname',() => Delivered);
 
