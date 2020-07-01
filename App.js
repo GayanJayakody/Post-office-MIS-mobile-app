@@ -1,47 +1,26 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { StyleSheet, Button, View, Image, Text, AppRegistry, TouchableHighlight, ImageBackground} from 'react-native';
+import { StyleSheet, View, Image, Text, AppRegistry, TouchableOpacity, ImageBackground, Dimensions } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Delivered from './screens/MarkAsDelivered'
 import Scan from './screens/QR';
 import Map from './screens/GoogleMap';
 
-
-
-const textStyles = StyleSheet.create({
-  container: {
-    marginTop: 50,
-  },
-  bigBlue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 30,
-  },
-  red: {
-    color: 'azure',
-	fontWeight: 'bold',
-    fontSize: 30,
-	textAlign: 'center',
-  },
-});
-
-
-
+const windowWidth = Dimensions.get('window').width;
 
 function HomeScreen({ navigation }) {
   return (
-	<ImageBackground source={require('./images/background.jpg')} style={{flex:1}}>
-    <View style={textStyles.container} style={{flex: 1,alignItems: 'center'}}>
-	  <Text style={textStyles.red}>{'\n'}{'\n'}Sri Lanka Post Office Management and Information System{'\n'}</Text>
-	  <Image source={require('./images/sl_post_logo.png')} style={{width: '100%', height: 200}} />
-	  <Text>{'\n'}{'\n'}{'\n'}</Text>
-	  <TouchableHighlight 
-	   	activeOpacity={0.8}
-       	underlayColor="blue"
-	  	onPress = {() => navigation.openDrawer()}>
-	  	<Text style={textStyles.red}>Start Duties</Text>
-	  </TouchableHighlight>
+	<ImageBackground source={require('./images/wallpaper.jpg')} style={{flex:1}}>
+    <View style={Styles.container}>
+	  	<View style={Styles.top}/>
+	  	<View style={Styles.bottom}>
+	  	<TouchableOpacity 
+			activeOpacity={0.5} 
+			onPress = {() => navigation.openDrawer()}>
+    		<Image source={require('./images/envilope.png')} style={Styles.image}/>
+	  	</TouchableOpacity>
+		</View>
     </View>
 	</ImageBackground>
   );
@@ -55,25 +34,42 @@ export default function App() {
       <Drawer.Navigator
 		drawerContentOptions={{
     	  	activeTintColor: 'black',
-			inactiveTintColor: 'white',
+			inactiveTintColor: 'goldenrod',
 			activeBackgroundColor: 'white',
-    	  	itemStyle: { marginVertical: 10 },
-			labelStyle: {fontWeight: 'bold',fontSize: 15}
+    	  	itemStyle: { marginTop:30},
+			labelStyle: {fontWeight: '900',fontSize: 20}
         }}
 		drawerStyle={{
-          	backgroundColor: '#1483f9',
-   		  	width: 240,
+          	backgroundColor: 'lavenderblush',
+   		  	width: 200,
   		}}
 	  initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeScreen} />
-		<Drawer.Screen name="Mark Delivered" component={Delivered} />
-		<Drawer.Screen name="Letter/Parcel Details" component={Scan} />
+		<Drawer.Screen name="Deliver" component={Delivered} />
+		<Drawer.Screen name="Scan QR" component={Scan} />
 		<Drawer.Screen name="Map" component={Map} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
 }
 	
+const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+	alignItems: 'center',
+  },
+  image: {
+    height: windowWidth*341/433/2,
+    width: windowWidth/2,
+    resizeMode: 'center',
+  },
+  top: {
+    flex: 0.525,
+  },
+  bottom: {
+    flex: 0.3,
+  },
+});
 
 
 
