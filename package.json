@@ -55,4 +55,7 @@
       "node_modules/(?!(react-native|@react-native-community|@react-navigation|react-native-camera|react-native-camera-kit|react-native-reanimated|react-native-maps|react-native-permissions|react-native-qrcode-scanner|react-native-safe-area-context|react-native-safe-area-view|react-native-screens|react-native-google-places-autocomplete|react-native-gesture-handler|react-native-iphone-x-helper)/)"
     ]
   }
+  "engines": {
+    "node": "12.14.0"
+  }
 }

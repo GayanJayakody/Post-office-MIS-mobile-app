@@ -9,10 +9,10 @@ app.use(bodyParser.json({type:'application/json'}));
 app.use(bodyParser.urlencoded({extended:true}));
 	
 var con = mysql.createConnection({
-	host:'localhost',
-	user: 'root',
-	password: '',
-	database: 'post_office_mis'
+	host:'bi0lhffur1lhjcc83l77-mysql.services.clever-cloud.com',
+	user: 'urth98gy7o9snioc',
+	password: 'urth98gy7o9snioc',
+	database: 'bi0lhffur1lhjcc83l77'
 });
 	
 var server = app.listen(4545, function(){
