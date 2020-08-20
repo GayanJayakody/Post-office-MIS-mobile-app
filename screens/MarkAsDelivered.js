@@ -62,7 +62,7 @@ deliveredButton = () => {
 	if(!(this.state.dataId === null)){
 		if(this.type === 'NormalPost'|| this.type === 'Parcel'){
 			this.letterStatus = 'delivered'
-			fetch('http://192.168.8.128:4545/users',{
+			fetch('http://192.168.100.146:4545/users',{
 				method: 'PUT',
 				headers: {
 					'Accept':'application/json',
@@ -87,7 +87,7 @@ deliveredButton = () => {
 			this.setState({dataId:null});
 		}
 		else if(this.type === 'RegPost' ){
-			fetch('http://192.168.8.128:4545/users/'+(this.state.dataId),{
+			fetch('http://192.168.100.146:4545/users/'+(this.state.dataId),{
 				method: 'GET',
 			}).then((responseData) => {
 				return responseData.json();
@@ -99,7 +99,7 @@ deliveredButton = () => {
 					this.letterStatus = 'sent-back'
 				}
 				console.log(this.letterStatus);
-				fetch('http://192.168.8.128:4545/users',{
+				fetch('http://192.168.100.146:4545/users',{
 					method: 'PUT',
 					headers: {
 						'Accept':'application/json',
@@ -136,7 +136,7 @@ unavailableButton = () => {
 	if(!(this.state.dataId === null)){
 		if(this.type === 'NormalPost' || this.type === 'Parcel' ){
 			this.letterStatus = 'receiver-unavailable'
-			fetch('http://192.168.8.128:4545/users',{
+			fetch('http://192.168.100.146:4545/users',{
 				method: 'PUT',
 				headers: {
 					'Accept':'application/json',
@@ -161,7 +161,7 @@ unavailableButton = () => {
 			this.setState({dataId:null});
 		}
 		else if(this.type === 'RegPost' ){
-			fetch('http://192.168.8.128:4545/users/'+(this.state.dataId),{
+			fetch('http://192.168.100.146:4545/users/'+(this.state.dataId),{
 				method: 'GET',
 			}).then((responseData) => {
 				return responseData.json();
@@ -173,7 +173,7 @@ unavailableButton = () => {
 					this.letterStatus = 'sender-unavailable'
 				}
 				console.log(this.letterStatus);
-				fetch('http://192.168.8.128:4545/users',{
+				fetch('http://192.168.100.146:4545/users',{
 					method: 'PUT',
 					headers: {
 						'Accept':'application/json',
