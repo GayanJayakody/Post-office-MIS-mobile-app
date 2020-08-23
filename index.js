@@ -24,7 +24,7 @@ var server = app.listen(4545, function(){
 
 con.connect(function(error){
 	if(!!error) console.log('error');
-	else console.log('connected to server');
+	else console.log('connected to DB server');
 });
 
 
