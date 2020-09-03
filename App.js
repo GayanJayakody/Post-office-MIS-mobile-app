@@ -9,7 +9,7 @@ import Map from './screens/GoogleMap';
 
 const windowWidth = Dimensions.get('window').width;
 
-function HomeScreen({ navigation }) {
+function HomeScreen({ navigation(props) }) {
   return (
 	<ImageBackground source={require('./images/wallpaper.jpg')} style={{flex:1}}>
     <View style={Styles.container}>
